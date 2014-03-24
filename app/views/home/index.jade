@@ -1,0 +1,57 @@
+extends ../shared/template
+
+block content
+  if user
+    h1 Welcome back #{user.name}!
+    a(href='/stuff') click here to check your notes collection
+
+  else
+    h1 please register and login!
+    marquee(style='z-index:2;position:absolute;left:171;top:16;font-family:Cursive;font-size:14pt;color:ffcc00;height:44;', scrollamount='6', direction='down') Text... or snow?!
+    marquee(style='z-index:2;position:absolute;left:95;top:100;font-family:Cursive;font-size:14pt;color:ffcc00;height:440;', scrollamount='6', direction='down') Text... or snow?!
+    marquee(style='z-index:2;position:absolute;left:195;top:45;font-family:Cursive;font-size:14pt;color:ffcc00;height:44;', scrollamount='4', direction='down') Text... or snow?!
+    marquee(style='z-index:2;position:absolute;left:61;top:39;font-family:Cursive;font-size:14pt;color:ffcc00;height:185;', scrollamount='7', direction='down') Text... or snow?!
+    marquee(style='z-index:2;position:absolute;left:261;top:51;font-family:Cursive;font-size:14pt;color:ffcc00;height:63;', scrollamount='4', direction='down') Text... or snow?!
+    marquee(style='z-index:2;position:absolute;left:154;top:71;font-family:Cursive;font-size:14pt;color:ffcc00;height:373;', scrollamount='4', direction='down') Text... or snow?!
+    marquee(style='z-index:2;position:absolute;left:278;top:82;font-family:Cursive;font-size:14pt;color:ffcc00;height:63;', scrollamount='2', direction='down') Text... or snow?!
+    marquee(style='z-index:2;position:absolute;left:228;top:94;font-family:Cursive;font-size:14pt;color:ffcc00;height:200;', scrollamount='1', direction='down') Text... or snow?!
+    marquee(style='z-index:2;position:absolute;left:247;top:93;font-family:Cursive;font-size:14pt;color:ffcc00;height:25;', direction='down') Text... or snow?!
+    marquee(style='z-index:2;position:absolute;left:117;top:116;font-family:Cursive;font-size:14pt;color:ffcc00;height:202;', scrollamount='2', direction='down') Text... or snow?!
+    marquee(style='z-index:2;position:absolute;left:59;top:53;font-family:Cursive;font-size:14pt;color:ffcc00;height:306;', scrollamount='3', direction='down') Text... or snow?!
+    marquee(style='z-index:2;position:absolute;left:69;top:17;font-family:Cursive;font-size:14pt;color:ffcc00;height:223;', scrollamount='2', direction='down') Text... or snow?!
+    marquee(style='z-index:2;position:absolute;left:59;top:103;font-family:Cursive;font-size:14pt;color:ffcc00;height:339;', scrollamount='5', direction='down') Text... or snow?!
+    marquee(style='z-index:2;position:absolute;left:62;top:69;font-family:Cursive;font-size:14pt;color:ffcc00;height:360;', scrollamount='5', direction='down') Text... or snow?!
+    marquee(style='z-index:2;position:absolute;left:96;top:49;font-family:Cursive;font-size:14pt;color:ffcc00;height:335;', scrollamount='4', direction='down') Text... or snow?!
+    marquee(style='z-index:2;position:absolute;left:68;top:82;font-family:Cursive;font-size:14pt;color:ffcc00;height:403;', scrollamount='6', direction='down') Text... or snow?!
+    marquee(style='z-index:2;position:absolute;left:273;top:73;font-family:Cursive;font-size:14pt;color:ffcc00;height:481;', scrollamount='2', direction='down') Text... or snow?!
+    marquee(style='z-index:2;position:absolute;left:75;top:119;font-family:Cursive;font-size:14pt;color:ffcc00;height:204;', scrollamount='5', direction='down') Text... or snow?!
+    marquee(style='z-index:2;position:absolute;left:144;top:43;font-family:Cursive;font-size:14pt;color:ffcc00;height:247;', scrollamount='6', direction='down') Text... or snow?!
+    marquee(style='z-index:2;position:absolute;left:288;top:23;font-family:Cursive;font-size:14pt;color:ffcc00;height:464;', scrollamount='6', direction='down') Text... or snow?!
+    marquee(style='z-index:2;position:absolute;left:161;top:59;font-family:Cursive;font-size:14pt;color:ffcc00;height:248;', scrollamount='5', direction='down') Text... or snow?!
+    span(style='position:absolute;top:400px')
+
+    form(action='/auth', method='post', enctype='multipart/form-data')
+      fieldset#regFieldset
+        legend Registration Form
+        .row
+          .small-7.columns
+            label User Name
+            input#regName(type='text', name='name', autofocus='true')
+          .small-5.columns
+            &nbsp;
+        .row
+          .small-6.columns
+            label Email
+            input(type='email', name='email')
+          .small-6.columns
+            label Password
+            input(type='password', name='password')
+        .row
+          .small-8.columns
+            label Profile Picture
+            input(type='file', name='photo')
+          .small-4.columns
+            button.small.radius Register!
+        #closeReg close[x]
+        a(href='/login')#signIn Sign In
+
