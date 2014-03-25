@@ -35,10 +35,13 @@ function load(app, fn){
   app.get('/notesByAlpha', d, notes.sortByAlpha);
   //-----find notes--------//
   app.get('/note/:id', d, notes.show);
+  app.get('/notePictures/:id', d, notes.immagini);
+  app.get('/fullNote/:id', d, notes.fullNote);
   app.get('/noteTitle/:title', d, notes.searchByTitle);
   app.get('/noteDate/:date', d, notes.searchByDate);
   app.get('/noteTags/:tags', d, notes.searchByTags);
   app.put('/note/:id', d, notes.updateBody);
+  app.del('/deleteNote/:id', d, notes.destroyNote);
   app.post('/notes', d, notes.create);
   app.post('/noteAddPic/:id', d, notes.addPic);
   app.get('/profile', d, users.showProfile);

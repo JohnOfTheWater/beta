@@ -20,6 +20,18 @@ exports.show = function(req, res){
   });
 };
 
+exports.immagini = function(req, res){
+  Note.findById(req.params.id, function(note){
+    res.send({note:note});
+  });
+};
+
+exports.fullNote = function(req, res){
+  Note.findById(req.params.id, function(note){
+    res.render('user/fullNote', {title:note.title, moment:moment, note:note});
+  });
+};
+
 exports.searchByTitle = function(req, res){
   var title = req.params.title; //.toString();
   //title = title.replace('-', ' ');
@@ -105,9 +117,9 @@ exports.updateBody = function(req, res){
   });
 };
 
-exports.destroy = function(req, res){
-  Note.findByIdAndDelete(req.params.id, function(){
-    res.redirect('/notes');
+exports.destroyNote = function(req, res){
+  Note.findByIdAndDelete(req.params.id, function(count){
+    res.send({count:count});
   });
 };
 

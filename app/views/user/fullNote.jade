@@ -29,24 +29,22 @@ block content
         .small-12.columns
           button.small.radius Create
       #closeNewNote close[x]
-  if notes
-    #notesWrap
-      each note in notes
-        .picture(value= note._id)
-          .title: a(href='#' + note._id)= note.title
-          .date= moment(note.dateCreated).format('MMMM Do, YYYY')
-          .tags= note.tags
-          .sample #{note.sample}...
-  #noteWrap
-    #title title
-    #date date
-    #body body
-    #tags tags
-    #form
-    #picture
-    #fullNote
-  #searchPanel
-    #closeSP close[x]
+  #fullNoteWrap
+    #fullTitle= note.title
+    #fullDate= moment(note.dateCreated).format('MMMM Do, YYYY')
+    hr
+    textarea#fullBody= note.body
+    #fullTags= note.tags
+    hr#hline
+    #pictureIcon(value=note._id)
+      #noteIcon
+      #pinIcon
+      #nprIcon
+      button.small.radius#saveChanges(value=note._id) Save
+    #trashIcon(value=note._id)
+
+  #fullSearchPanel
+    #closeFSP close[x]
     #sort Sort
       button.small.radius#dateS By Date
       button.small.radius#alpha By Alpha
@@ -57,8 +55,11 @@ block content
       button.small.radius#srcDB Search
       input#srcTags(type='text', placeholder='search by tags...')
       button.small.radius#srcTB Search
-  #searchResult
+  #fullSearchResult
     #result
+
+  #picturePanel
+    #closePN close[x]
 
 //form(action='/albums/' + album._id, method='post', enctype='multipart/form-data')
 //fieldset

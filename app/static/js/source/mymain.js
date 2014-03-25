@@ -11,10 +11,15 @@
     $('#dateS').hide();
     $('#alpha').hide();
     $('#searchResult').hide();
+    $('#fullSearchResult').hide();
     $('#searchP *').hide();
+    $('#fullSearchPanel').hide();
+    $('#picturePanel').hide();
     $('#regLog').click(showRegLogPanel);
     $('#closeReg').click(closeRegLogPanel);
     $('#closeNewNote').click(closeNewNote);
+    $('#closeFSP').click(closeSearchOpzioni);
+    $('#closePN').click(closePicturePanel);
     $('#showN').click(showNewNote);
     $('#sort').click(showSortOptions);
     $('#dateS').click(sortByDate);
@@ -23,11 +28,31 @@
     $('#srcDB').click(searchByDate);
     $('#srcTB').click(searchByTags);
     $('#searchP').click(showSearchOptions);
+    $('#saveChanges').click(updateFullNote);
+    $('#searchCommand').click(showSearchOpzioni);
+    $('#pictureIcon').click(mostraImmagini);
+    $('#trashIcon').click(deleteNote);
     $('#notesWrap').on('click', '.picture', queryNote);
+    $('#searchResult').on('click', '.picture', queryNote);
+    $('#fullSearchResult').on('click', '.picture', goToNote);
     $('#noteWrap').on('click', '.noteButton', updateNote);
   }
 
 //------animations-------/
+
+  function showSearchOpzioni(){
+    //$('#dateS').fadeOut('fast');
+    $('#picturePanel').fadeOut('fast');
+    $('#fullSearchPanel').fadeIn(500);
+  }
+
+  function closeSearchOpzioni(){
+    $('#fullSearchPanel').fadeOut(500);
+  }
+
+  function closePicturePanel(){
+    $('#picturePanel').fadeOut(500);
+  }
 
   function showSearchOptions(){
     $('#dateS').fadeOut('fast');
@@ -58,6 +83,44 @@
   function closeNewNote(){
     $('#newNote').fadeOut(500);
   }
+//-------MostraImmagini--------------//
+
+  function mostraImmagini(){
+    var id = $(this).attr('value');
+    var url = window.location.origin.replace(/[0-9]{4}/, '4000') + '/notePictures/'+id;
+    $.getJSON(url, displayImmagini);
+  }
+
+  function displayImmagini(data){
+    debugger;
+    $('#picturePanel').fadeIn('fast');
+    $('.immagine').remove();
+    console.log(data.note.photo);
+    for(var i = 0; i < data.note.photo.length; i++){
+      appendPictures(data.note.photo[i]);
+    }
+  }
+
+  function appendPictures(pic){
+    var $picture = $('<div>');
+
+    $picture.addClass('immagine').css('background', 'url("'+pic+'")').css('background-size', 'cover');
+
+    $($picture).hide();
+
+    $('#picturePanel').append($picture);
+
+    $($picture).fadeIn('slow');
+  }
+
+
+//-------goToNote--------------//
+
+  function goToNote(){
+    var id = $(this).attr('value');
+    window.location.replace('/fullNote/'+id);
+  }
+
 //--------search by name/date/tags-------//
 
   function searchByName(){
@@ -96,7 +159,9 @@
   function displaySBD(data){
     debugger;
     $('#searchResult').fadeIn();
+    $('#fullSearchResult').fadeIn();
     $('#searchResult .picture').remove();
+    $('#fullSearchResult .picture').remove();
     //$('.fotoMI').remove();
     for(var i = 0; i < data.notes.length; i++){
       appendSBD(data.notes[i]);
@@ -111,8 +176,8 @@
     var $sample = $('<div>');
     var date = note.dateCreated.substr(0, 10);
 
-    $picture.addClass('picture');
-    $title.addClass('titleResult').text(note.title);
+    $picture.addClass('picture').attr('value', note._id);
+    $title.addClass('titleResult').text(note.title).attr('value', note._id);
     $date.addClass('dateResult').text(date);
     $tags.addClass('tagsResult').text(note.tags);
     $sample.addClass('sampleResult').text(note.sample+'...');
@@ -138,7 +203,7 @@
 
   function displayNote(data){
     debugger;
-    $('.noteTitle, .noteData, .noteBody, .noteTags, .notePicture').remove();
+    $('.noteTitle, .noteData, .noteBody, .noteTags, .notePicture, .fullNoteButton').remove();
     data = data.note;
     var $title = $('<div>');
     var $date = $('<div>');
@@ -152,6 +217,7 @@
     var $form = $('<form>');
     var $input = $('<input>');
     var $button = $('<button>');
+    var $fullNote = $('<a>');
     var date = data.dateCreated.slice(0, 10);
 
     $title.text(data.title).addClass('noteTitle').attr('data-id', data._id);
@@ -166,6 +232,7 @@
     $form.addClass('noteForm').attr('data-id', data._id).attr('action', '/noteAddPic/'+ data._id).attr('method', 'post').attr('enctype', 'multipart/form-data').val(data.userId);
     $input.addClass('noteInput').attr('data-id', data._id).attr('type', 'file').attr('name', 'photo');
     $button.text('Add Photo').addClass('noteFormButton').attr('data-id', data._id).val(data.userId);
+    $fullNote.text('FullNote').addClass('fullNoteButton').attr('href', '/fullNote/'+data._id).val(data.userId);
 
     $('#title').append($title);
     $('#date').append($date);
@@ -179,7 +246,9 @@
     $picture2.append($picture3);
     $picture.append($picture2);
     $('#picture').append($picture);
+    $('#fullNote').append($fullNote);
   }
+//-----updateNote----------//
 
   function updateNote(){
     var id = $(this).data('id');
@@ -196,6 +265,35 @@
     };
     $.ajax({url:url, type:type, data:data, success:success});
 
+  }
+
+  function updateFullNote(){
+    debugger;
+    var id = $(this).attr('value');
+    var body = $('#fullBody').val();
+    var k = {body:body};
+    var data = k;
+    var url = window.location.origin.replace(/[0-9]{4}/, '4000') + '/note/' + id;
+    var type = 'PUT';
+    var success = function(count){
+      alert('your note has been succesfuly updated');
+      console.log(count);
+    };
+    $.ajax({url:url, type:type, data:data, success:success});
+  }
+
+//-----deleteNote----------//
+
+  function deleteNote(){
+    var id = $(this).attr('value');
+    var url = window.location.origin.replace(/[0-9]{4}/, '4000') + '/deleteNote/' + id;
+    var type = 'DELETE';
+    var success = function(count){
+      alert('your note has been deleted!');
+      window.location.replace('/notes');
+    };
+
+    $.ajax({url:url, type:type, success:success});
   }
 
 })();

@@ -78,13 +78,14 @@ Note.findByDate = function(userId, date, fn){
     fn(records);
   });
 };
-//db.inventory.find( { tags: { $in: [ /^be/, /^st/ ] } } )
+
+// db.notes.find( { userId:userId,  tags: {$in: ["fun"] }}
 Note.findByTags = function(userId, tags, fn){
   userId = Mongo.ObjectID(userId);
-  tags = tags.substr(0, 3);
+  //tags = tags.substr(0, 3);
   console.log('inside model after substr(): '+tags);
 
-  notes.find({userId:userId}, {tags: {$in: [tags]}}).toArray(function(err, records){
+  notes.find({userId:userId, tags: {$in: [tags]}}).toArray(function(err, records){
     fn(records);
   });
 };
