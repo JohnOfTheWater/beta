@@ -20,6 +20,8 @@
     $('#dateS').click(sortByDate);
     $('#alpha').click(sortByAlpha);
     $('#srcNB').click(searchByName);
+    $('#srcDB').click(searchByDate);
+    $('#srcTB').click(searchByTags);
     $('#searchP').click(showSearchOptions);
     $('#notesWrap').on('click', '.picture', queryNote);
     $('#noteWrap').on('click', '.noteButton', updateNote);
@@ -56,13 +58,26 @@
   function closeNewNote(){
     $('#newNote').fadeOut(500);
   }
-//--------search by neme/date/tags-------//
+//--------search by name/date/tags-------//
 
   function searchByName(){
-    debugger;
     var title = $('#srcName').val();
     //title = title.replace(' ', '-');
     var url = window.location.origin.replace(/[0-9]{4}/, '4000') + '/noteTitle/'+title;
+    $.getJSON(url, displaySBD);
+  }
+
+  function searchByDate(){
+    var date = $('#srcDate').val();
+    //title = title.replace(' ', '-');
+    var url = window.location.origin.replace(/[0-9]{4}/, '4000') + '/noteDate/'+date;
+    $.getJSON(url, displaySBD);
+  }
+
+  function searchByTags(){
+    var tags = $('#srcTags').val();
+    //title = title.replace(' ', '-');
+    var url = window.location.origin.replace(/[0-9]{4}/, '4000') + '/noteTags/'+tags;
     $.getJSON(url, displaySBD);
   }
 

@@ -21,10 +21,28 @@ exports.show = function(req, res){
 };
 
 exports.searchByTitle = function(req, res){
-  var title = req.params.title.toString();
+  var title = req.params.title; //.toString();
   //title = title.replace('-', ' ');
   console.log('inside routes title: '+title);
   Note.findByTitle(req.session.userId, title, function(notes){
+    res.send({notes:notes});
+  });
+};
+
+exports.searchByDate = function(req, res){
+  var date = req.params.date;
+  //title = title.replace('-', ' ');
+  console.log('inside routes date: '+date);
+  Note.findByDate(req.session.userId, date, function(notes){
+    res.send({notes:notes});
+  });
+};
+
+exports.searchByTags = function(req, res){
+  var tags = req.params.tags;
+  //title = title.replace('-', ' ');
+  console.log('inside routes tags: '+tags);
+  Note.findByTags(req.session.userId, tags, function(notes){
     res.send({notes:notes});
   });
 };

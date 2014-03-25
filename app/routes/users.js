@@ -84,7 +84,7 @@ exports.login = function(req, res){
         req.session.userId = ret._id.toString();
         req.session.save(function(){
           console.log('BEFORE FINDUSERBYID', req.session);
-          Note.findByUserId(req.session.userId, function(notes){
+          Note.findByUserIdLimit(req.session.userId, function(notes){
             if(notes.length !== 0){
               console.log('IF, notes.length= '+notes.length);
               res.render('user/notes', {title:'ciao', moment:moment, user:ret, notes:notes});

@@ -69,6 +69,26 @@ Note.updateBody = function(id, body, fn){
   });
 };
 
+Note.findByDate = function(userId, date, fn){
+  userId = Mongo.ObjectID(userId);
+  //date = new Date(date);
+  console.log('after new Date(date): '+date);
+
+  notes.find({userId:userId, dateCreated: new Date(date)}).toArray(function(err, records){
+    fn(records);
+  });
+};
+//db.inventory.find( { tags: { $in: [ /^be/, /^st/ ] } } )
+Note.findByTags = function(userId, tags, fn){
+  userId = Mongo.ObjectID(userId);
+  tags = tags.substr(0, 3);
+  console.log('inside model after substr(): '+tags);
+
+  notes.find({userId:userId}, {tags: {$in: [tags]}}).toArray(function(err, records){
+    fn(records);
+  });
+};
+
 Note.findByTitle = function(userId, title, fn){
   console.log('title: '+title);
   userId = Mongo.ObjectID(userId);
