@@ -22,6 +22,9 @@ function load(app, fn){
 
   //-----Reg/Login--------//
   app.get('/', d, home.index);
+  //-----Test--------//
+  app.get('/test', d, home.test);
+  //-----endTest--------//
   app.get('/admin/get-teams', d, teams.getTeams);
   app.get('/auth', d, users.auth);
   app.post('/auth', d, users.create);

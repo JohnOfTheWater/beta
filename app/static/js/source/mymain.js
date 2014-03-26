@@ -1,3 +1,4 @@
+/* global google:true */
 (function(){
 
   'use strict';
@@ -20,6 +21,7 @@
     $('#closeNewNote').click(closeNewNote);
     $('#closeFSP').click(closeSearchOpzioni);
     $('#closePN').click(closePicturePanel);
+    $('#closeMappa').click(chiudiMappa);
     $('#showN').click(showNewNote);
     $('#sort').click(showSortOptions);
     $('#dateS').click(sortByDate);
@@ -31,6 +33,7 @@
     $('#saveChanges').click(updateFullNote);
     $('#searchCommand').click(showSearchOpzioni);
     $('#pictureIcon').click(mostraImmagini);
+    $('#pinIcon').click(mostraMappa);
     $('#trashIcon').click(deleteNote);
     $('#notesWrap').on('click', '.picture', queryNote);
     $('#searchResult').on('click', '.picture', queryNote);
@@ -38,6 +41,41 @@
     $('#noteWrap').on('click', '.noteButton', updateNote);
     $('#picturePanel').on('click', '.immagine', showBigPic);
     $('#bigPic').on('click', '.bigPic', removeBigPic);
+
+    findMyLocation();
+  }
+//------Global Variables-------/
+
+  var lat;
+  var lng;
+
+  $('#lat').val(lat);
+  $('#lng').val(lng);
+
+//------Geo-Auto-Positioning-------/
+
+  function findMyLocation(){
+    console.log('findMyLocation');
+    getLocation();
+  }
+
+  function getLocation(){
+    console.log('getLocation');
+    var geoOptions = {enableHighAccuracy: true, maximumAge: 1000, timeout: 60000};
+    navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);
+  }
+
+  function geoSuccess(location) {
+    console.log('geoSuccess');
+    lat = location.coords.latitude;
+    lng = location.coords.longitude;
+    console.log('lat', lat);
+    console.log('lng', lng);
+
+  }
+
+  function geoError() {
+    console.log('Sorry, no position available.');
   }
 
 //------animations-------/
@@ -85,6 +123,17 @@
   function closeNewNote(){
     $('#newNote').fadeOut(500);
   }
+
+  function mostraMappa(){
+    $('#mappa').css('visibility', 'visible');
+    $('#closeMappa').css('visibility', 'visible');
+  }
+
+  function chiudiMappa(){
+    $('#mappa').css('visibility', 'hidden');
+    $('#closeMappa').css('visibility', 'hidden');
+  }
+
 //-------MostraImmagini--------------//
 
   function mostraImmagini(){
@@ -312,6 +361,37 @@
 
     $.ajax({url:url, type:type, success:success});
   }
+
+//------GeoLocation----------//
+
+  var latitudine = $('#pinIcon').attr('value')*1;
+  var longitudine = $('#pinIcon').attr('data')*1;
+  var title = $('#fullTitle').text();
+
+  var mapOptions = {
+    center: new google.maps.LatLng(latitudine, longitudine),
+    zoom: 16,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+
+  var map = new google.maps.Map(document.getElementById('mappa'), mapOptions);
+
+  var markerOptions = {
+    position: new google.maps.LatLng(latitudine, longitudine)
+  };
+
+  var marker = new google.maps.Marker(markerOptions);
+  marker.setMap(map);
+
+  var infoWindowOptions = {
+    content: 'Your Note '+title+' was taken Here!'
+  };
+
+  var infoWindow = new google.maps.InfoWindow(infoWindowOptions);
+  google.maps.event.addListener(marker,'click',function(e){
+
+    infoWindow.open(map, marker);
+  });
 
 })();
 

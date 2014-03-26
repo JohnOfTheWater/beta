@@ -38,11 +38,13 @@ block content
     hr#hline
     #pictureIcon(value=note._id)
       #noteIcon
-      #pinIcon
+      #pinIcon(value=note.lat, data=note.lng)
       #nprIcon
       button.small.radius#saveChanges(value=note._id) Save
     #trashIcon(value=note._id)
     #bigPic
+    #mappa
+    #closeMappa close[x]
 
   #fullSearchPanel
     #closeFSP close[x]

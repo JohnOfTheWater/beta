@@ -2,6 +2,10 @@
 'use strict';
 //var User = require('../models/user');
 
+exports.test = function(req, res){
+  res.render('user/test', {title: 'Google Maps Test'});
+};
+
 exports.index = function(req, res){
   req.session.destroy(function(){
     res.render('home/index', {title: 'ProjectLapis!'});

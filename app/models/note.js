@@ -17,6 +17,8 @@ function Note(note){
   this.tags = _.compact(this.tags);
   this.userId = Mongo.ObjectID(note.userId);
   this.photo = note.photo || [];
+  this.lat = note.lat;
+  this.lng = note.lng;
 }
 
 Note.prototype.insert = function(fn){
