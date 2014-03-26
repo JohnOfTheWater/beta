@@ -1,8 +1,8 @@
 extends ../shared/template
 
 block content
-  h1 This was the edit profile page, now is notes page.
-  h1= title
+  h1 This was the full Note page
+  h1= user.name
   .profilePic(style='background-image:url("'+user.photo+'")')
 
   form(action='/notes', method='post')
@@ -42,6 +42,7 @@ block content
       #nprIcon
       button.small.radius#saveChanges(value=note._id) Save
     #trashIcon(value=note._id)
+    #bigPic
 
   #fullSearchPanel
     #closeFSP close[x]
@@ -59,6 +60,7 @@ block content
     #result
 
   #picturePanel
+    #addFoto +picture
     #closePN close[x]
 
 //form(action='/albums/' + album._id, method='post', enctype='multipart/form-data')

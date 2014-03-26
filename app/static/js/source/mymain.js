@@ -36,6 +36,8 @@
     $('#searchResult').on('click', '.picture', queryNote);
     $('#fullSearchResult').on('click', '.picture', goToNote);
     $('#noteWrap').on('click', '.noteButton', updateNote);
+    $('#picturePanel').on('click', '.immagine', showBigPic);
+    $('#bigPic').on('click', '.bigPic', removeBigPic);
   }
 
 //------animations-------/
@@ -92,7 +94,6 @@
   }
 
   function displayImmagini(data){
-    debugger;
     $('#picturePanel').fadeIn('fast');
     $('.immagine').remove();
     console.log(data.note.photo);
@@ -113,6 +114,23 @@
     $($picture).fadeIn('slow');
   }
 
+  function showBigPic(){
+    $('.bigPic').remove();
+    var style = $(this).attr('style');
+    var $picture = $('<div>');
+
+    $picture.addClass('bigPic').attr('style', style);
+
+    $($picture).hide();
+
+    $('#bigPic').append($picture);
+
+    $($picture).fadeIn('slow');
+  }
+
+  function removeBigPic(){
+    $('.bigPic').fadeOut(500);
+  }
 
 //-------goToNote--------------//
 
@@ -157,7 +175,6 @@
   }
 
   function displaySBD(data){
-    debugger;
     $('#searchResult').fadeIn();
     $('#fullSearchResult').fadeIn();
     $('#searchResult .picture').remove();
@@ -202,7 +219,6 @@
   }
 
   function displayNote(data){
-    debugger;
     $('.noteTitle, .noteData, .noteBody, .noteTags, .notePicture, .fullNoteButton').remove();
     data = data.note;
     var $title = $('<div>');
@@ -222,7 +238,7 @@
 
     $title.text(data.title).addClass('noteTitle').attr('data-id', data._id);
     $date.text(date).addClass('noteData').attr('data-id', data._id);
-    $body.text(data.body).addClass('noteBody').attr('data-id', data._id);
+    $body.attr('data-id', data._id);
     $tags.text(data.tags).addClass('noteTags').attr('data-id', data._id).attr('value', data.tags);
     $picture.addClass('notePicture').attr('data-id', data._id).css('background', 'url("'+data.photo[0]+'")').css('background-size', 'cover').attr('value', data.photo[0]);
     $picture2.addClass('notePicture2').attr('data-id', data._id).css('background', 'url("'+data.photo[1]+'")').css('background-size', 'cover');
@@ -247,6 +263,8 @@
     $picture.append($picture2);
     $('#picture').append($picture);
     $('#fullNote').append($fullNote);
+
+    $('.noteEdit').focus();
   }
 //-----updateNote----------//
 
@@ -268,7 +286,6 @@
   }
 
   function updateFullNote(){
-    debugger;
     var id = $(this).attr('value');
     var body = $('#fullBody').val();
     var k = {body:body};
