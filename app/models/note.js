@@ -32,7 +32,7 @@ Note.prototype.insert = function(fn){
 Note.findByUserIdLimit = function(userId, fn){
   userId = Mongo.ObjectID(userId);
 
-  notes.find({userId:userId}).limit(9).toArray(function(err, records){
+  notes.find({userId:userId}).sort({_id:-1}).limit(9).toArray(function(err, records){
     fn(records);
   });
 };

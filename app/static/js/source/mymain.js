@@ -14,12 +14,14 @@
     $('#searchResult').hide();
     $('#fullSearchResult').hide();
     $('#searchP *').hide();
+    $('#searchPanel').hide();
     $('#fullSearchPanel').hide();
     $('#picturePanel').hide();
     $('#regLog').click(showRegLogPanel);
     $('#closeReg').click(closeRegLogPanel);
     $('#closeNewNote').click(closeNewNote);
     $('#closeFSP').click(closeSearchOpzioni);
+    $('#closeSP').click(closeSearchOpzioni);
     $('#closePN').click(closePicturePanel);
     $('#closeMappa').click(chiudiMappa);
     $('#showN').click(showNewNote);
@@ -49,8 +51,6 @@
   var lat;
   var lng;
 
-  $('#lat').val(lat);
-  $('#lng').val(lng);
 
 //------Geo-Auto-Positioning-------/
 
@@ -84,10 +84,13 @@
     //$('#dateS').fadeOut('fast');
     $('#picturePanel').fadeOut('fast');
     $('#fullSearchPanel').fadeIn(500);
+    $('#searchPanel').fadeIn(500);
   }
 
   function closeSearchOpzioni(){
     $('#fullSearchPanel').fadeOut(500);
+    $('#searchPanel').fadeOut(500);
+    $('#searchResult').fadeOut(500);
   }
 
   function closePicturePanel(){
@@ -118,6 +121,8 @@
   function showNewNote(){
     $('#newNote').fadeIn(500);
     $('#noteTitle').focus();
+    $('#lat').val(lat);
+    $('#lng').val(lng);
   }
 
   function closeNewNote(){

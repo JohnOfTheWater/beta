@@ -1,7 +1,7 @@
 extends ../shared/template
 
 block content
-  h1 This was the full Note page
+  h1 This is the full Note page
   h1= user.name
   .profilePic(style='background-image:url("'+user.photo+'")')
 
@@ -10,6 +10,8 @@ block content
       legend New Note
       .row
         .small-6.columns
+          input(name='lat', type='text')#lat
+          input(name='lng', type='text')#lng
           label Title
           input#noteTitle(name='title', type='text', autofocus=true)
         .small-6.columns
@@ -37,14 +39,16 @@ block content
     #fullTags= note.tags
     hr#hline
     #pictureIcon(value=note._id)
-      #noteIcon
-      #pinIcon(value=note.lat, data=note.lng)
-      #nprIcon
-      button.small.radius#saveChanges(value=note._id) Save
+    #noteIcon
+    #pinIcon(value=note.lat, data=note.lng)
+    #nprIcon
+    button.small.radius#saveChanges(value=note._id) Save
     #trashIcon(value=note._id)
     #bigPic
     #mappa
     #closeMappa close[x]
+    #nprWrap
+      #closeNpr close[x]
 
   #fullSearchPanel
     #closeFSP close[x]
