@@ -19,12 +19,15 @@
     $('#picturePanel').hide();
     $('#closeBP').hide();
     $('#form2').hide();
+    $('#audioForm').hide();
+    $('#soundPanel').hide();
     $('#regLog').click(showRegLogPanel);
     $('#closeReg').click(closeRegLogPanel);
     $('#closeNewNote').click(closeNewNote);
     $('#closeFSP').click(closeSearchOpzioni);
     $('#closeSP').click(closeSearchOpzioni);
     $('#closePN').click(closePicturePanel);
+    $('#closeAudio').click(closeSoundPanel);
     $('#closeMappa').click(chiudiMappa);
     $('#showN').click(showNewNote);
     $('#sort').click(showSortOptions);
@@ -37,7 +40,9 @@
     $('#saveChanges').click(updateFullNote);
     $('#searchCommand').click(showSearchOpzioni);
     $('#pictureIcon').click(mostraImmagini);
+    $('#noteIcon').click(mostraSoundPanel);
     $('#addFoto').click(showNewFoto);
+    $('#addAudio').click(showNewAudio);
     $('#pinIcon').click(mostraMappa);
     $('#trashIcon').click(deleteNote);
     $('#notesWrap').on('click', '.picture', queryNote);
@@ -89,6 +94,11 @@
     $('#form2').fadeToggle(500);
   }
 
+  function showNewAudio(){
+    //$('#picturePanel').fadeOut('fast');
+    $('#audioForm').fadeToggle(500);
+  }
+
   function showSearchOpzioni(){
     //$('#dateS').fadeOut('fast');
     $('#picturePanel').fadeOut('fast');
@@ -104,6 +114,10 @@
 
   function closePicturePanel(){
     $('#picturePanel').fadeOut(500);
+  }
+
+  function closeSoundPanel(){
+    $('#soundPanel').fadeOut(500);
   }
 
   function showSearchOptions(){
@@ -148,7 +162,12 @@
     $('#closeMappa').css('visibility', 'hidden');
   }
 
-//-------MostraImmagini--------------//
+//-------MostraImmagini&udio--------------//
+
+  function mostraSoundPanel(){
+    $('#soundPanel').fadeIn('fast');
+  }
+
 
   function mostraImmagini(){
     var id = $(this).attr('value');

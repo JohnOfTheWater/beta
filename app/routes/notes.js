@@ -100,7 +100,7 @@ exports.addPic = function(req, res){
     note.tags = note.tags.toString();
     note.userId = note.userId.toString();
     console.log('note.photo: '+note.photo.toString());
-    var newNote = new Note({title:note.title, body:note.body, dateCreated:note.dateCreated, photo:note.photo, tags:note.tags, userId:note.userId, lat:note.lat, lng:note.lng});
+    var newNote = new Note({title:note.title, body:note.body, dateCreated:note.dateCreated, photo:note.photo, audio:note.audio, tags:note.tags, userId:note.userId, lat:note.lat, lng:note.lng});
     newNote.addPhoto(req.files.photo.path, function(){
       newNote.update(id, function(count){
         res.redirect('/notes');
@@ -116,11 +116,66 @@ exports.addFullPic = function(req, res){
     note.tags = note.tags.toString();
     note.userId = note.userId.toString();
     console.log('note.photo: '+note.photo.toString());
-    var newNote = new Note({title:note.title, body:note.body, dateCreated:note.dateCreated, photo:note.photo, tags:note.tags, userId:note.userId, lat:note.lat, lng:note.lng});
+    var newNote = new Note({title:note.title, body:note.body, dateCreated:note.dateCreated, photo:note.photo, audio:note.audio, tags:note.tags, userId:note.userId, lat:note.lat, lng:note.lng});
     newNote.addPhoto(req.files.photo.path, function(){
       newNote.update(id, function(count){
         res.redirect('/fullNote/'+id);
       });
+    });
+  });
+};
+
+exports.addFullAudio = function(req, res){
+  var id = req.params.id;
+  Note.findById(id, function(note){
+    console.log('after findById: '+note.tags);
+    note.tags = note.tags.toString();
+    note.userId = note.userId.toString();
+    console.log('note.photo: '+note.photo.toString());
+    console.log('req.files.audio: '+req.files.audio);
+    console.log('req.files.audio.path: '+req.files.audio.path);
+    var newNote = new Note({title:note.title, body:note.body, dateCreated:note.dateCreated, photo:note.photo, audio:note.audio, tags:note.tags, userId:note.userId, lat:note.lat, lng:note.lng});
+    newNote.addAudio(req.files.audio.path, function(){
+      newNote.update(id, function(count){
+        res.redirect('/fullNote/'+id);
+      });
+    });
+  });
+};
+/*
+exports.test = function(req, res){
+  console.log('req.params.id: '+req.params.id);
+  console.log('req.files.photo.path: '+req.files.photo.path);
+  var id = req.params.id;
+  Note.findById(id, function(note){
+    console.log('after findById: '+note.tags);
+    note.tags = note.tags.toString();
+    note.userId = note.userId.toString();
+    console.log('note.photo: '+note.photo.toString());
+    console.log('req.files.audio: '+req.files.photo);
+    console.log('req.files.audio.path: '+req.files.photo.path);
+    var newNote = new Note({title:note.title, body:note.body, dateCreated:note.dateCreated, photo:note.photo, audio:note.audio, tags:note.tags, userId:note.userId, lat:note.lat, lng:note.lng});
+    newNote.addMyPhoto(req.files.photo.path, function(){
+      newNote.update(id, function(count){
+        res.redirect('/fullNote/'+id);
+      });
+    });
+  });
+};
+*/
+
+exports.test = function(req, res){
+  console.log('id: '+req.params.id);
+  console.log('body: '+req.body);
+  var body = req.body.body.toString();
+  var id = req.params.id;
+  Note.findById(id, function(note){
+    console.log('body: '+body);
+    note.tags = note.tags.toString();
+    note.userId = note.userId.toString();
+    var newNote = new Note({title:note.title, body:note.body, dateCreated:note.dateCreated, photo:note.photo, audio:note.audio, tags:note.tags, userId:note.userId, lat:note.lat, lng:note.lng});
+    newNote.test(body, function(x){
+      console.log('x: '+x);
     });
   });
 };

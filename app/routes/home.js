@@ -3,7 +3,7 @@
 //var User = require('../models/user');
 
 exports.test = function(req, res){
-  res.render('user/test', {title: 'Google Maps Test'});
+  res.render('user/test', {title: 'video capturing test'});
 };
 
 exports.index = function(req, res){

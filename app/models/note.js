@@ -17,6 +17,7 @@ function Note(note){
   this.tags = _.compact(this.tags);
   this.userId = Mongo.ObjectID(note.userId);
   this.photo = note.photo || [];
+  this.audio = note.audio || [];
   this.lat = note.lat;
   this.lng = note.lng;
 }
@@ -168,4 +169,66 @@ Note.prototype.addPhoto = function(oldpath, fn){
       });
     });
   });
+};
+
+Note.prototype.addAudio = function(oldpath, fn){
+  console.log('oldpath: '+oldpath);
+  var self = this;
+  User.findById(this.userId.toString(), function(ret){
+    var email = ret.email.replace(/@/g, '');
+    email = email.replace(/\./g, '').toLowerCase();
+    var name = ret.name.replace(/\s/g , '');
+    name = name.replace(/[\.,-\/#!$%\^&\*;:{}=\-_`~()]/g, '').toLowerCase();
+    var dirname = email + '/' + name;
+    var abspath = __dirname + '/../static';
+    var extension = path.extname(oldpath);
+    var newOldPath = oldpath.substr(6, 10);
+    console.log('changedOldpath: '+newOldPath);
+    var ext = newOldPath + extension;
+    var relpath = '/img/' + dirname;
+    var newpath = relpath + '/' + ext;
+    fs.mkdir(abspath + relpath, function(){
+      fs.rename(oldpath, abspath + newpath, function(){
+
+        self.audio.push(newpath);
+        fn();
+      });
+    });
+  });
+};
+
+Note.prototype.addMyPhoto = function(oldpath, fn){
+  console.log('oldpath: '+oldpath);
+  var self = this;
+  User.findById(this.userId.toString(), function(ret){
+    var email = ret.email.replace(/@/g, '');
+    email = email.replace(/\./g, '').toLowerCase();
+    var name = ret.name.replace(/\s/g , '');
+    name = name.replace(/[\.,-\/#!$%\^&\*;:{}=\-_`~()]/g, '').toLowerCase();
+    var dirname = email + '/' + name;
+    var abspath = __dirname + '/../static';
+    var extension = path.extname(oldpath);
+    var newOldPath = oldpath.substr(6, 10);
+    console.log('changedOldpath: '+newOldPath);
+    var ext = newOldPath + extension;
+    var relpath = '/img/' + dirname;
+    var newpath = relpath + '/' + ext + '.jpg';
+    fs.mkdir(abspath + relpath, function(){
+      fs.rename(oldpath, abspath + newpath, function(){
+
+        self.photo.push(newpath);
+        fn();
+      });
+    });
+  });
+};
+
+Note.prototype.test = function(dataUrl, fn){
+  var dataString = dataUrl.split(',')[1];
+  console.log('dataString: '+dataString);
+  var buffer = new Buffer(dataString, 'base64');
+  var extension = dataUrl.match(/\/(.*)\;/)[1];
+  var fullFileName = 'userWebcamPic.' + extension;
+  fs.writeFileSync(fullFileName, buffer, 'binary');
+  fn(fullFileName);
 };

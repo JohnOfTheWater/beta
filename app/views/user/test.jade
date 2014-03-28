@@ -42,9 +42,20 @@ html(class='no-js', lang='en')
                       button.alert.tiny.radius.expand Logout
 
     h1= title
-    button.tiny.radius#show Show Map
-    #mappa
+    video#video
+    button#startbutton Take photo
+    canvas#canvas
+    img#photo(src='http://placekitten.com/g/320/261', alt='photo')
 
+    button.tiny.radius#get get
+    form(action='/rollo/5334ca517a49d8a20d319b55', method='post', enctype='multipart/form-data')
+      fieldset
+        legend Registration Form
+        .row
+          .small-7.columns
+            input#roffo(type='file', name='photo')
+          .small-5.columns
+            button.tiny.radius#send send
 
     script(src='http://maps.googleapis.com/maps/api/js?sensor=false')
     script(src='/js/vendor/jquery.js')

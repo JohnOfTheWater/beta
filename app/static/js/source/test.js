@@ -1,84 +1,84 @@
-/* global google:true */
-(function(){
+'use strict';
 
-  'use strict';
+(function() {
 
-  $(document).ready(initialize);
+  var streaming = false,
+      video        = document.querySelector('#video'),
+      canvas       = document.querySelector('#canvas'),
+      photo        = document.querySelector('#photo'),
+      startbutton  = document.querySelector('#startbutton'),
+      width = 320,
+      height = 0;
 
-  function initialize(){
-    $(document).foundation();
-    //$('#mappa').hide();
-    $('#show').click(showMap);
-    $('#closeMappa').click(hideMap);
+  navigator.getMedia = ( navigator.getUserMedia ||
+                         navigator.webkitGetUserMedia ||
+                         navigator.mozGetUserMedia ||
+                         navigator.msGetUserMedia);
 
-    findMyLocation();
+  navigator.getMedia(
+    {
+      video: true,
+      audio: false
+    },
+    function(stream) {
+      if (navigator.mozGetUserMedia) {
+        video.mozSrcObject = stream;
+      } else {
+        var vendorURL = window.URL || window.webkitURL;
+        video.src = vendorURL.createObjectURL(stream);
+      }
+      video.play();
+    },
+    function(err) {
+      console.log('An error occured! ' + err);
+    }
+  );
+
+  video.addEventListener('canplay', function(ev){
+    if (!streaming) {
+      height = video.videoHeight / (video.videoWidth/width);
+      video.setAttribute('width', width);
+      video.setAttribute('height', height);
+      canvas.setAttribute('width', width);
+      canvas.setAttribute('height', height);
+      streaming = true;
+    }
+  }, false);
+
+  function takepicture() {
+    canvas.width = width;
+    canvas.height = height;
+    canvas.getContext('2d').drawImage(video, 0, 0, width, height);
+    var data = canvas.toDataURL('image/png');
+    photo.setAttribute('src', data);
   }
 
-  var latitude;
-  var longitude;
-
-  function findMyLocation(){
-    console.log('findMyLocation');
-    getLocation();
-  }
-
-  function getLocation(){
-    console.log('getLocation');
-    var geoOptions = {enableHighAccuracy: true, maximumAge: 1000, timeout: 60000};
-    navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);
-  }
-
-  function geoSuccess(location) {
-    console.log('geoSuccess');
-    latitude = location.coords.latitude;
-    longitude = location.coords.longitude;
-    console.log('lat', latitude);
-    console.log('lng', longitude);
-
-    //$('#search').show();
-  }
-
-  function geoError() {
-    console.log('Sorry, no position available.');
-  }
-
-
-  function showMap(){
-    $('#mappa').css('visibility', 'visible');
-    //$('#mappa').fadeToggle('fast');
-  }
-
-  function hideMap(){
-    $('#mappa').css('visibility', 'hidden');
-  }
-
-  var lat = 36.124789199999995;
-  var lon = -86.7258631;
-
-  var mapOptions = {
-    center: new google.maps.LatLng(lat,lon),
-    zoom: 17,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-  };
-
-  var map = new google.maps.Map(document.getElementById('mappa'), mapOptions);
-
-  var markerOptions = {
-    position: new google.maps.LatLng(lat, lon)
-  };
-
-  var marker = new google.maps.Marker(markerOptions);
-  marker.setMap(map);
-
-  var infoWindowOptions = {
-    content: 'your Note was taken Here!'
-  };
-
-  var infoWindow = new google.maps.InfoWindow(infoWindowOptions);
-  google.maps.event.addListener(marker,'click',function(e){
-
-    infoWindow.open(map, marker);
-  });
-
+  startbutton.addEventListener('click', function(ev){
+      takepicture();
+      ev.preventDefault();
+    }, false);
+///tmp/4016-1po6k78.mp3
 })();
 
+$('#get').click(get);
+
+//function get(){
+  //debugger;
+  //var stuff = $('#photo').attr('src');
+  //$('#roffo').val(stuff);
+//}
+
+function get(){
+    debugger;
+    var id = '5334ca517a49d8a20d319b55';
+    var body = $('#photo').attr('src');
+    var k = {body:body};
+    var data = k;
+    var url = window.location.origin.replace(/[0-9]{4}/, '4000') + '/rollo/' + id;
+    var type = 'POST';
+    var success = function(count){
+      alert('your note has been succesfuly updated');
+      console.log(count);
+    };
+    $.ajax({url:url, type:type, data:data, success:success});
+  }

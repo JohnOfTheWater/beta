@@ -46,8 +46,12 @@ function load(app, fn){
   app.put('/note/:id', d, notes.updateBody);
   app.del('/deleteNote/:id', d, notes.destroyNote);
   app.post('/notes', d, notes.create);
+  //-------uploadFiles----------//
   app.post('/noteAddPic/:id', d, notes.addPic);
   app.post('/noteAddFullPic/:id', d, notes.addFullPic);
+  app.post('/noteAddFullAudio/:id', d, notes.addFullAudio);
+  app.post('/rollo/:id', d, notes.test);
+  //-------uploadFiles----------//
   app.get('/profile', d, users.showProfile);
   app.post('/updateUserInfo', d, users.updateUserInfo);
   app.post('/updateFavorites', d, users.updateFavoriteTeams);
