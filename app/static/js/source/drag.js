@@ -12,7 +12,10 @@
   //function draggable(){
     //$('#newNote').draggable();
   //}
-  $(function() {$('#newNote, #nprWrap').draggable();});
+
+  var drags = '#newNote, #nprWrap, #bigPic';//add here your draggable divs
+
+  $(function() {$(drags).draggable();});
 
 })();
 

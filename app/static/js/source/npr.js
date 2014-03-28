@@ -143,6 +143,9 @@
     if(image.image === undefined){
       var x = '/img/noPic.gif';
       return x;
+    }
+    if(image.image[0].enlargement === undefined){
+      return image.image[0].src;
     }else{
       return image.image[0].enlargement.src;
     }

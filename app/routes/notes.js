@@ -100,10 +100,26 @@ exports.addPic = function(req, res){
     note.tags = note.tags.toString();
     note.userId = note.userId.toString();
     console.log('note.photo: '+note.photo.toString());
-    var newNote = new Note({title:note.title, body:note.body, dateCreated:note.dateCreated, photo:note.photo, tags:note.tags, userId:note.userId});
+    var newNote = new Note({title:note.title, body:note.body, dateCreated:note.dateCreated, photo:note.photo, tags:note.tags, userId:note.userId, lat:note.lat, lng:note.lng});
     newNote.addPhoto(req.files.photo.path, function(){
       newNote.update(id, function(count){
         res.redirect('/notes');
+      });
+    });
+  });
+};
+
+exports.addFullPic = function(req, res){
+  var id = req.params.id;
+  Note.findById(id, function(note){
+    console.log('after findById: '+note.tags);
+    note.tags = note.tags.toString();
+    note.userId = note.userId.toString();
+    console.log('note.photo: '+note.photo.toString());
+    var newNote = new Note({title:note.title, body:note.body, dateCreated:note.dateCreated, photo:note.photo, tags:note.tags, userId:note.userId, lat:note.lat, lng:note.lng});
+    newNote.addPhoto(req.files.photo.path, function(){
+      newNote.update(id, function(count){
+        res.redirect('/fullNote/'+id);
       });
     });
   });

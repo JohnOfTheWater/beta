@@ -47,6 +47,7 @@ function load(app, fn){
   app.del('/deleteNote/:id', d, notes.destroyNote);
   app.post('/notes', d, notes.create);
   app.post('/noteAddPic/:id', d, notes.addPic);
+  app.post('/noteAddFullPic/:id', d, notes.addFullPic);
   app.get('/profile', d, users.showProfile);
   app.post('/updateUserInfo', d, users.updateUserInfo);
   app.post('/updateFavorites', d, users.updateFavoriteTeams);

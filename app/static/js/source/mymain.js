@@ -17,6 +17,8 @@
     $('#searchPanel').hide();
     $('#fullSearchPanel').hide();
     $('#picturePanel').hide();
+    $('#closeBP').hide();
+    $('#form2').hide();
     $('#regLog').click(showRegLogPanel);
     $('#closeReg').click(closeRegLogPanel);
     $('#closeNewNote').click(closeNewNote);
@@ -35,6 +37,7 @@
     $('#saveChanges').click(updateFullNote);
     $('#searchCommand').click(showSearchOpzioni);
     $('#pictureIcon').click(mostraImmagini);
+    $('#addFoto').click(showNewFoto);
     $('#pinIcon').click(mostraMappa);
     $('#trashIcon').click(deleteNote);
     $('#notesWrap').on('click', '.picture', queryNote);
@@ -42,7 +45,8 @@
     $('#fullSearchResult').on('click', '.picture', goToNote);
     $('#noteWrap').on('click', '.noteButton', updateNote);
     $('#picturePanel').on('click', '.immagine', showBigPic);
-    $('#bigPic').on('click', '.bigPic', removeBigPic);
+    //$('#form2').on('click', '.noteButton', updateNote);
+    $('#closeBP').click(removeBigPic);
 
     findMyLocation();
   }
@@ -79,6 +83,11 @@
   }
 
 //------animations-------/
+//
+  function showNewFoto(){
+    //$('#picturePanel').fadeOut('fast');
+    $('#form2').fadeToggle(500);
+  }
 
   function showSearchOpzioni(){
     //$('#dateS').fadeOut('fast');
@@ -180,10 +189,12 @@
     $('#bigPic').append($picture);
 
     $($picture).fadeIn('slow');
+    $('#closeBP').fadeIn('slow');
   }
 
   function removeBigPic(){
     $('.bigPic').fadeOut(500);
+    $('#closeBP').fadeOut(500);
   }
 
 //-------goToNote--------------//
@@ -397,6 +408,24 @@
 
     infoWindow.open(map, marker);
   });
+//----------addPicFromFullNote---------//
+/*
+  function newFoto(){
+    debugger;
+    var id = $('#pictureIcon').attr('value');
+    var userId = $('#form2').attr('value');
+    var $form = $('<form>');
+    var $input = $('<input>');
+    var $button = $('<button>');
 
+    $form.addClass('xnoteForm').attr('data-id', id).attr('action', '/noteAddPic/'+ id).attr('method', 'post').attr('enctype', 'multipart/form-data').val(userId);
+    $input.addClass('noteInput').attr('data-id', id).attr('type', 'file').attr('name', 'photo');
+    $button.text('Add Photo').addClass('noteFormButton').attr('data-id', id).val(userId);
+
+    $form.append($input);
+    $form.append($button);
+    $('#form2').append($form);
+  }
+*/
 })();
 

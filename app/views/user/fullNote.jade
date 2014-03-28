@@ -45,6 +45,7 @@ block content
     button.small.radius#saveChanges(value=note._id) Save
     #trashIcon(value=note._id)
     #bigPic
+      #closeBP close[x]
     #mappa
     #closeMappa close[x]
     #nprWrap
@@ -67,6 +68,14 @@ block content
 
   #picturePanel
     #addFoto +picture
+      form(action='/noteAddFullPic/'+ note._id, method='post', enctype='multipart/form-data')
+        fieldset#form2(value=note.userId)
+          .row
+            .small-12.columns
+              input(name='photo', type='file')
+          .row
+            .small-12.columns
+              button.tiny.radius#form2B Add
     #closePN close[x]
 
 //form(action='/albums/' + album._id, method='post', enctype='multipart/form-data')
