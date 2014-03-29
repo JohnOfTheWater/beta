@@ -26,6 +26,12 @@ exports.immagini = function(req, res){
   });
 };
 
+exports.audio = function(req, res){
+  Note.findById(req.params.id, function(note){
+    res.send({note:note});
+  });
+};
+
 exports.fullNote = function(req, res){
   Note.findById(req.params.id, function(note){
     res.render('user/fullNote', {title:note.title, moment:moment, note:note});
@@ -164,18 +170,20 @@ exports.test = function(req, res){
 };
 */
 
-exports.test = function(req, res){
+exports.webcamPic = function(req, res){
   console.log('id: '+req.params.id);
-  console.log('body: '+req.body);
   var body = req.body.body.toString();
   var id = req.params.id;
-  Note.findById(id, function(note){
-    console.log('body: '+body);
-    note.tags = note.tags.toString();
-    note.userId = note.userId.toString();
-    var newNote = new Note({title:note.title, body:note.body, dateCreated:note.dateCreated, photo:note.photo, audio:note.audio, tags:note.tags, userId:note.userId, lat:note.lat, lng:note.lng});
-    newNote.test(body, function(x){
-      console.log('x: '+x);
+  Note.encode(body, function(path){
+    Note.findById(id, function(note){
+      note.tags = note.tags.toString();
+      note.userId = note.userId.toString();
+      var newNote = new Note({title:note.title, body:note.body, dateCreated:note.dateCreated, photo:note.photo, audio:note.audio, tags:note.tags, userId:note.userId, lat:note.lat, lng:note.lng});
+      newNote.addPhoto(path, function(){
+        newNote.update(id, function(count){
+          res.redirect('/fullNote/'+id);
+        });
+      });
     });
   });
 };

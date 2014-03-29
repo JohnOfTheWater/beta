@@ -18,8 +18,10 @@ html(class='no-js', lang='en')
           a(href="#") Menu
       section.top-bar-section
         ul.left
-          li.name
-            input#search(type='search', placeholder='search...', results='0')
+          if user
+            li.name
+              input#search(type='search', placeholder='search...', results='0')
+              button.tiny.radius#firstSrc Search
         ul.right
             li
             li.divider
@@ -54,7 +56,7 @@ html(class='no-js', lang='en')
     script(src='/js/source/mymain.js')
     script(src='/js/source/npr.js')
     script(src='/js/source/drag.js')
-    //script(src='/js/source/test.js')
+    script(src='/js/source/webcam.js')
     //script(src='/js/source/news.js')
     //script(src='/js/source/map.js')
     script(src='/js/source/main.js')

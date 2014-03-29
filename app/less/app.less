@@ -5,6 +5,7 @@
 
 body{
   background: -webkit-linear-gradient(-45deg, rgba(30,87,153,1) 0%,rgba(41,137,216,1) 50%,rgba(32,124,202,1) 51%,rgba(125,185,232,1) 100%);
+  //background: -webkit-linear-gradient(-45deg, #f8ffe8 0%,#e3f5ab 59%,#e3f5ab 93%,#b7df2d 100%), no-repeat;
   //background-color: @bg-color;
   //background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,rgba(216,224,222,1)), color-stop(22%,rgba(174,191,188,1)), color-stop(33%,rgba(153,175,171,1)), color-stop(50%,rgba(142,166,162,1)), color-stop(67%,rgba(130,157,152,1)), color-stop(82%,rgba(78,92,90,1)), color-stop(100%,rgba(14,14,14,1))) fixed;
   //background: -webkit-linear-gradient(-45deg, rgba(30,87,153,1) 0%,rgba(41,137,216,1) 43%,rgba(125,185,232,1) 100%) fixed;
@@ -12,6 +13,106 @@ body{
   //background: url('https://fbcdn-sphotos-g-a.akamaihd.net/hphotos-ak-ash3/t1.0-9/1238315_746004968752035_608615465_n.jpg') fixed;
   //background-size: cover;
 }
+//----------Marquees-------------//
+
+#map img {
+max-width: none;
+}
+
+#marquee1{
+text-shadow: 1px 1px aliceblue, -1px -1px aliceblue;
+color: crimson;
+width: 465px;
+height: 450px;
+font-size: -webkit-xxx-large;
+top: 0px;
+font-family: -webkit-pictograph;
+}
+
+#marquee2{
+  position: absolute;
+  //border: 1px solid black;
+  text-shadow: 1px 1px #f0f8ff, -1px -1px #f0f8ff;
+  color: rgb(19, 90, 33);
+  width: 500px;
+  height: 400px;
+  font-size: -webkit-xxx-large;
+  font-family: -webkit-pictograph;
+  top: 200px;
+}
+
+#marquee3{
+  position: absolute;
+  text-shadow: 1px 1px #f0f8ff, -1px -1px #f0f8ff;
+  color: #4D48BB;
+  width: 500px;
+  height: 400px;
+  font-size: xx-large;
+  font-family: -webkit-pictograph;
+  top: 200px;
+  left: 800px;
+}
+
+#marquee4{
+  position: absolute;
+  text-shadow: 1px 1px #398ed8, -1px -1px #f0f8ff;
+  color: #737286;
+  width: 500px;
+  height: 500px;
+  font-size: xx-large;
+  font-family: fantasy;
+  top: 100px;
+  left: 600px;
+}
+
+#marquee5{
+  position: absolute;
+  text-shadow: 1px 1px #398ed8, -1px -1px #f0f8ff;
+  color: #737286;
+  width: 500px;
+  height: 380px;
+  font-size: xx-large;
+  font-family: fantasy;
+  top: 300px;
+  left: 100px;
+}
+
+#marquee6{
+  position: absolute;
+  text-shadow: 1px 1px #398ED8, -1px -1px #f0f8ff;
+  color: #737286;
+  width: 500px;
+  height: 630px;
+  font-size: xx-large;
+  font-family: fantasy;
+  top: 50px;
+  left: 800px;
+}
+
+#marquee7{
+  position: absolute;
+  text-shadow: 1px 1px #398ed8, -1px -1px #f0f8ff;
+  color: #737286;
+  width: 300px;
+  height: 530px;
+  font-size: xx-large;
+  font-family: fantasy;
+  top: 150px;
+  left: 1230px;
+}
+
+#marquee8{
+  position: absolute;
+  text-shadow: 1px 1px #398ed8, -1px -1px #f0f8ff;
+  color: #737286;
+  width: 500px;
+  height: 500px;
+  font-size: xx-large;
+  font-family: fantasy;
+  top: 430px;
+  left: 1230px;
+}
+
 //----------Login/Registration-----------//
 
 #regFieldset{
@@ -24,10 +125,10 @@ box-shadow: 6px 6px 5px #525050;
 border: 1px solid black;
 margin: auto;
 font-family: 'Concert One', cursive;
-position: relative;
-//top: 0px;
-//left: 56%;
 text-shadow: 1px 1px 1px #ffffff, -1px -1px 1px #ffffff;
+position: absolute;
+top: 270px;
+left: 960px;
 }
 
 #closeReg {
@@ -316,7 +417,7 @@ left: 155px;
 }
 
 #srcName {
-  border-radius: 20px;
+  border-radius: 10px;
   width: 210px;
 position: relative;
 top: 20px;
@@ -550,6 +651,64 @@ top: 488px;
 left: 180px;
 }
 
+#cameraIcon{
+background: url('/img/camera.ico') no-repeat;
+background-size: cover;
+width: 50px; height: 50px;
+position: absolute;
+top: 488px;
+left: 245px;
+}
+
+#webcam{
+  box-shadow: 5px 5px 5px #1A1717;
+  background-color: rgba(235, 229, 229, 0.5);
+  border: 1px solid white;
+  position: absolute;
+  top: 0px; left: -550px;
+  width: 500px; height: 503px;
+  margin-bottom: 5px;
+}
+
+#closeWC {
+  position: absolute;
+  top: 1px;
+  left: 431px;
+  margin: 0px 0px 0px 0px;
+  font-size: 16px;
+  color: white;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 1px #000000, -1px -1px 1px #000000;
+  z-index: 4;
+  font-family: 'Concert One', cursive;
+}
+
+#video{
+  margin: 5px 0px 0px 5px;
+  border: 2px solid whitesmoke;
+}
+
+#canvas{
+  margin: 5px 0px 0px 5px;
+  border: 2px solid whitesmoke;
+}
+
+#photo{
+display: none;
+}
+
+#startbutton{
+  position: absolute;
+  top: 187px;
+  left: 336px;
+}
+
+#get{
+  position: absolute;
+  top: 433px;
+  left: 340px;
+}
+
 #trashIcon{
 background: url('/img/trashIcon.png') no-repeat;
 background-size: cover;
@@ -654,6 +813,39 @@ top: 0px; left: -550px
   height: 500px;
 }
 
+#audioWindow{
+position: absolute;
+top: 0px; left: -550px
+}
+
+#closeAW {
+  position: absolute;
+  top: 3px; left: 331px;
+  margin: 0px 0px 0px 0px;
+  font-size: 16px;
+  color: white;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 1px black, -1px -1px 1px black;
+  z-index: +4;
+  font-family: 'Concert One', cursive;
+}
+
+.audios{
+  margin: 0px 0px 5px 0px;
+  color: #007095;
+  text-align: center;
+  font-size: x-large;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 1px whitesmoke, -1px -1px 1px whitesmoke;
+}
+
+.audioPlay{
+  box-shadow: 5px 5px 5px #1A1717;
+  background-color: rgba(235, 229, 229, 0.5);
+  border: 1px solid white;
+  width: 400px;
+  height: 51px;
+}
 
 #mappa{
   visibility: hidden;
@@ -703,6 +895,8 @@ top: 0px; left: -550px
 }
 
 .nprTitle{
+  font-size: large;
+  text-decoration: underline;
   border-top: 1px solid whitesmoke;
   position: relative;
   top: 0px;
@@ -711,7 +905,7 @@ top: 0px; left: -550px
 }
 
 .nprText{
-  text-align: justify;
+  //text-align: justify;
   position: relative;
   top: 30px;
   left: 300px;
@@ -1059,9 +1253,22 @@ font-size: 40px;
 
 
 #search {
+  z-index: 1;
   position: relative;
   top: 4px;
   border-radius: 10px;
+}
+
+#firstSrc{
+padding: 0px 0px 0px 17px;
+position: relative;
+display: inline-block;
+top: -47px;
+z-index: 0;
+border-radius: 25px;
+width: 80px;
+height: 33px;
+left: 137px;
 }
 
 #home{

@@ -108,13 +108,14 @@
     debugger;
     console.log(data);
     console.log(data.list.story[0].title.$text);
-    console.log(data.list.story[0].text.paragraph[0].$text);
+    //console.log(data.list.story[0].text.paragraph[0].$text);
     //console.log(data.list.story[0].image[0].enlargement.src);
     console.log(data.list.story[0].link[0].$text);
     for(var i = 0; i < 3; i++){
       debugger;
       var title = data.list.story[i].title.$text;
-      var text = data.list.story[i].text.paragraph[0].$text;
+      //var text = data.list.story[i].text.paragraph[0].$text;
+      var text = getText(data.list.story[i]);
       var image = getImage(data.list.story[i]);//data.list.story[i].image[0].enlargement.src || '/img/noPic.gif';
       var link = data.list.story[i].link[0].$text;
 
@@ -128,7 +129,7 @@
       $title.text(title).addClass('nprTitle');
       $text.text(text+'...').addClass('nprText');
       $image.css('background','url('+image+')').css('background-size', 'cover').addClass('nprImage');
-      $link.text('See full Article').attr('href', link).addClass('nprLink');
+      $link.text('See full Article').attr('href', link).attr('target', '_blank').addClass('nprLink');
 
 
       $image.append($title);
@@ -148,6 +149,14 @@
       return image.image[0].src;
     }else{
       return image.image[0].enlargement.src;
+    }
+  }
+
+  function getText(text){
+    debugger;
+    if(text.paragraph === undefined){
+      var x = text.teaser.$text || 'Sorry, no short paragraph available for this article...please visit our website for the full article. Thank you';
+      return x;
     }
   }
 

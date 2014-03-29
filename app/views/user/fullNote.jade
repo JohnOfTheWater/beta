@@ -39,17 +39,27 @@ block content
     #fullTags= note.tags
     hr#hline
     #pictureIcon(value=note._id)
-    #noteIcon
+    #noteIcon(value=note._id)
     #pinIcon(value=note.lat, data=note.lng)
     #nprIcon
     button.small.radius#saveChanges(value=note._id) Save
     #trashIcon(value=note._id)
+    #cameraIcon
     #bigPic
       #closeBP close[x]
+    #audioWindow
+      #closeAW close[x]
     #mappa
     #closeMappa close[x]
     #nprWrap
       #closeNpr close[x]
+    #webcam
+      video#video
+      button#startbutton Take photo
+      canvas#canvas
+      img#photo(src='#', alt='photo')
+      button#get Add Photo
+      #closeWC close[x]
 
   #fullSearchPanel
     #closeFSP close[x]
@@ -89,6 +99,7 @@ block content
           .small-12.columns
             button.tiny.radius#audioB Add
     #closeAudio close[x]
+
 
 //form(action='/albums/' + album._id, method='post', enctype='multipart/form-data')
 //fieldset

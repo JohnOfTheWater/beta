@@ -18,6 +18,7 @@
     $('#fullSearchPanel').hide();
     $('#picturePanel').hide();
     $('#closeBP').hide();
+    $('#closeAW').hide();
     $('#form2').hide();
     $('#audioForm').hide();
     $('#soundPanel').hide();
@@ -34,6 +35,7 @@
     $('#dateS').click(sortByDate);
     $('#alpha').click(sortByAlpha);
     $('#srcNB').click(searchByName);
+    $('#firstSrc').click(searchByName);
     $('#srcDB').click(searchByDate);
     $('#srcTB').click(searchByTags);
     $('#searchP').click(showSearchOptions);
@@ -50,8 +52,9 @@
     $('#fullSearchResult').on('click', '.picture', goToNote);
     $('#noteWrap').on('click', '.noteButton', updateNote);
     $('#picturePanel').on('click', '.immagine', showBigPic);
-    //$('#form2').on('click', '.noteButton', updateNote);
+    $('#soundPanel').on('click', '.audios', showAudioWindow);
     $('#closeBP').click(removeBigPic);
+    $('#closeAW').click(closeAudioWindow);
 
     findMyLocation();
   }
@@ -162,12 +165,56 @@
     $('#closeMappa').css('visibility', 'hidden');
   }
 
-//-------MostraImmagini&udio--------------//
+//-------MostraImmagini&Audio--------------//
 
   function mostraSoundPanel(){
-    $('#soundPanel').fadeIn('fast');
+    var id = $(this).attr('value');
+    var url = window.location.origin.replace(/[0-9]{4}/, '4000') + '/noteAudio/'+id;
+    $.getJSON(url, displayAudio);
   }
 
+  function displayAudio(data){
+    debugger;
+    $('.audios').remove();
+    $('#soundPanel').fadeIn('fast');
+    console.log(data);
+    for(var i = 0; i < data.note.audio.length; i++){
+      appendAudio(data.note.audio[i], i);
+    }
+  }
+
+  function appendAudio(audio, i){
+    var $title = $('<div>');
+    var text = $('#fullTitle').text();
+    i += 1;
+    $title.text('-'+text+'- Audio File n.'+i).addClass('audios').attr('value', audio);
+
+    $($title).hide();
+
+    $('#soundPanel').append($title);
+
+    $($title).fadeIn('slow');
+  }
+
+  function showAudioWindow(){
+    $('.audioPlay').remove();
+    var src = $(this).attr('value');
+    var $audio = $('<audio>');
+
+    $audio.addClass('audioPlay').attr('src', src).attr('controls', 'controls');
+
+    $($audio).hide();
+
+    $('#audioWindow').append($audio);
+
+    $($audio).fadeIn('slow');
+    $('#closeAW').fadeIn('slow');
+  }
+
+  function closeAudioWindow(){
+    $('.audioPlay').fadeOut(500);
+    $('#closeAW').fadeOut(500);
+  }
 
   function mostraImmagini(){
     var id = $(this).attr('value');
@@ -226,7 +273,7 @@
 //--------search by name/date/tags-------//
 
   function searchByName(){
-    var title = $('#srcName').val();
+    var title = $('#srcName').val() || $('#search').val();
     //title = title.replace(' ', '-');
     var url = window.location.origin.replace(/[0-9]{4}/, '4000') + '/noteTitle/'+title;
     $.getJSON(url, displaySBD);

@@ -39,6 +39,7 @@ function load(app, fn){
   //-----find notes--------//
   app.get('/note/:id', d, notes.show);
   app.get('/notePictures/:id', d, notes.immagini);
+  app.get('/noteAudio/:id', d, notes.audio);
   app.get('/fullNote/:id', d, notes.fullNote);
   app.get('/noteTitle/:title', d, notes.searchByTitle);
   app.get('/noteDate/:date', d, notes.searchByDate);
@@ -50,7 +51,7 @@ function load(app, fn){
   app.post('/noteAddPic/:id', d, notes.addPic);
   app.post('/noteAddFullPic/:id', d, notes.addFullPic);
   app.post('/noteAddFullAudio/:id', d, notes.addFullAudio);
-  app.post('/rollo/:id', d, notes.test);
+  app.post('/webcam/:id', d, notes.webcamPic);
   //-------uploadFiles----------//
   app.get('/profile', d, users.showProfile);
   app.post('/updateUserInfo', d, users.updateUserInfo);

@@ -148,6 +148,7 @@ Note.prototype.addPhoto = function(oldpath, fn){
 Note.prototype.addPhoto = function(oldpath, fn){
   console.log('oldpath: '+oldpath);
   var self = this;
+  var random = _.random(0, 1000);
   User.findById(this.userId.toString(), function(ret){
     var email = ret.email.replace(/@/g, '');
     email = email.replace(/\./g, '').toLowerCase();
@@ -155,9 +156,11 @@ Note.prototype.addPhoto = function(oldpath, fn){
     name = name.replace(/[\.,-\/#!$%\^&\*;:{}=\-_`~()]/g, '').toLowerCase();
     var dirname = email + '/' + name;
     var abspath = __dirname + '/../static';
+    console.log('abspath: '+abspath);
     var extension = path.extname(oldpath);
     var newOldPath = oldpath.substr(6, 10);
-    console.log('changedOldpath: '+newOldPath);
+    newOldPath = random + newOldPath;
+    console.log('newOldPath: '+newOldPath);
     var ext = newOldPath + extension;
     var relpath = '/img/' + dirname;
     var newpath = relpath + '/' + ext;
@@ -223,9 +226,8 @@ Note.prototype.addMyPhoto = function(oldpath, fn){
   });
 };
 
-Note.prototype.test = function(dataUrl, fn){
+Note.encode = function(dataUrl, fn){
   var dataString = dataUrl.split(',')[1];
-  console.log('dataString: '+dataString);
   var buffer = new Buffer(dataString, 'base64');
   var extension = dataUrl.match(/\/(.*)\;/)[1];
   var fullFileName = 'userWebcamPic.' + extension;
