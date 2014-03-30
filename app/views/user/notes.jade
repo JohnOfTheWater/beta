@@ -40,25 +40,26 @@ block content
           .tags= note.tags
           .sample #{note.sample}...
   #noteWrap
-    #title title:
-    #date date:
-    #body body
-    #tags tags:
-    #form
+    #title
+    #date
+    hr#line
+    //#body
+    #tags
+    //#form
     #picture
     #fullNote
-  #searchPanel
-    #closeSP close[x]
-    #sort Sort
-      button.small.radius#dateS By Date
-      button.small.radius#alpha By Alpha
-    #searchP Search
-      input#srcName(type='text', placeholder='search by name...')
-      button.small.radius#srcNB Search
-      input#srcDate(type='date')
-      button.small.radius#srcDB Search
-      input#srcTags(type='text', placeholder='search by tags...')
-      button.small.radius#srcTB Search
+    #searchPanel
+      #closeSP close[x]
+      #sort Sort
+        button.small.radius#dateS By Date
+        button.small.radius#alpha By Name
+      #searchP Search
+        input#srcName(type='text', placeholder='search by name...')
+        button.small.radius#srcNB Search
+        input#srcDate(type='date')
+        button.small.radius#srcDB Search
+        input#srcTags(type='text', placeholder='search by tags...')
+        button.small.radius#srcTB Search
   #searchResult
     #result
 

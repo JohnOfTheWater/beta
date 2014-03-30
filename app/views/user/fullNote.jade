@@ -90,6 +90,7 @@ block content
 
   #soundPanel
     #addAudio +audio
+    #mic
     form(action='/noteAddFullAudio/'+ note._id, method='post', enctype='multipart/form-data')
       fieldset#audioForm(value=note.userId)
         .row

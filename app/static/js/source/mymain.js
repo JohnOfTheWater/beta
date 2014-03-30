@@ -14,7 +14,7 @@
     $('#searchResult').hide();
     $('#fullSearchResult').hide();
     $('#searchP *').hide();
-    $('#searchPanel').hide();
+    $('#closeSP').hide();
     $('#fullSearchPanel').hide();
     $('#picturePanel').hide();
     $('#closeBP').hide();
@@ -111,8 +111,9 @@
 
   function closeSearchOpzioni(){
     $('#fullSearchPanel').fadeOut(500);
-    $('#searchPanel').fadeOut(500);
+    //$('#searchPanel').fadeOut(500);
     $('#searchResult').fadeOut(500);
+    $('#closeSP').fadeOut(500);
   }
 
   function closePicturePanel(){
@@ -308,6 +309,7 @@
   function displaySBD(data){
     $('#searchResult').fadeIn();
     $('#fullSearchResult').fadeIn();
+    $('#closeSP').fadeIn();
     $('#searchResult .picture').remove();
     $('#fullSearchResult .picture').remove();
     //$('.fotoMI').remove();
@@ -350,48 +352,60 @@
   }
 
   function displayNote(data){
-    $('.noteTitle, .noteData, .noteBody, .noteTags, .notePicture, .fullNoteButton').remove();
+    $('.noteTitle, .noteData, .noteBody, .noteTags, .notePicture, .notePicture2, .fullNoteButton').remove();
     data = data.note;
     var $title = $('<div>');
     var $date = $('<div>');
-    var $body = $('<div>');
+    //var $body = $('<div>');
     var $tags = $('<div>');
     var $picture = $('<div>');
     var $picture2 = $('<div>');
-    var $picture3 = $('<div>');
+    //var $picture3 = $('<div>');
     var $edit = $('<textarea>');
     var $update = $('<button>');
-    var $form = $('<form>');
-    var $input = $('<input>');
-    var $button = $('<button>');
+    //var $form = $('<form>');
+    //var $input = $('<input>');
+    //var $button = $('<button>');
     var $fullNote = $('<a>');
     var date = data.dateCreated.slice(0, 10);
+    debugger;
+    if(data.photo.length !== 0){
+      data.photo[0] = '/img/photo.png';
+    }else{
+      data.photo[0] = '#';
+    }
+    var sound;
+    if(data.audio.length !== 0){
+      sound = '/img/sound.png';
+    }else{
+      sound = '#';
+    }
 
     $title.text(data.title).addClass('noteTitle').attr('data-id', data._id);
     $date.text(date).addClass('noteData').attr('data-id', data._id);
-    $body.attr('data-id', data._id);
+    //$body.attr('data-id', data._id);
     $tags.text(data.tags).addClass('noteTags').attr('data-id', data._id).attr('value', data.tags);
     $picture.addClass('notePicture').attr('data-id', data._id).css('background', 'url("'+data.photo[0]+'")').css('background-size', 'cover').attr('value', data.photo[0]);
-    $picture2.addClass('notePicture2').attr('data-id', data._id).css('background', 'url("'+data.photo[1]+'")').css('background-size', 'cover');
-    $picture3.addClass('notePicture3').attr('data-id', data._id).css('background', 'url("'+data.photo[2]+'")').css('background-size', 'cover');
+    $picture2.addClass('notePicture2').attr('data-id', data._id).css('background', 'url("'+sound+'")').css('background-size', 'cover');
+    //$picture3.addClass('notePicture3').attr('data-id', data._id).css('background', 'url("'+data.photo[2]+'")').css('background-size', 'cover');
     $edit.text(data.body).addClass('noteEdit').attr('data-id', data._id);
     $update.text('Save').addClass('noteButton').attr('data-id', data._id).val(data.userId);
-    $form.addClass('noteForm').attr('data-id', data._id).attr('action', '/noteAddPic/'+ data._id).attr('method', 'post').attr('enctype', 'multipart/form-data').val(data.userId);
-    $input.addClass('noteInput').attr('data-id', data._id).attr('type', 'file').attr('name', 'photo');
-    $button.text('Add Photo').addClass('noteFormButton').attr('data-id', data._id).val(data.userId);
+    //$form.addClass('noteForm').attr('data-id', data._id).attr('action', '/noteAddPic/'+ data._id).attr('method', 'post').attr('enctype', 'multipart/form-data').val(data.userId);
+    //$input.addClass('noteInput').attr('data-id', data._id).attr('type', 'file').attr('name', 'photo');
+    //$button.text('Add Photo').addClass('noteFormButton').attr('data-id', data._id).val(data.userId);
     $fullNote.text('FullNote').addClass('fullNoteButton').attr('href', '/fullNote/'+data._id).val(data.userId);
 
     $('#title').append($title);
     $('#date').append($date);
-    $('#body').append($body);
+    //$('#body').append($body);
     $('#tags').append($tags);
-    $tags.append($edit);
+    $('#line').append($edit);
     $tags.append($update);
-    $form.append($input);
-    $form.append($button);
-    $('#form').append($form);
-    $picture2.append($picture3);
-    $picture.append($picture2);
+    //$form.append($input);
+    //$form.append($button);
+    //$('#form').append($form);
+    //$picture2.append($picture3);
+    $('#picture').append($picture2);
     $('#picture').append($picture);
     $('#fullNote').append($fullNote);
 

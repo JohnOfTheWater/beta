@@ -13,7 +13,7 @@
     //$('#newNote').draggable();
   //}
 
-  var drags = '#newNote, #nprWrap, #bigPic, #audioWindow';//add here your draggable divs
+  var drags = '#newNote, #nprWrap, #bigPic, #searchPanel, #audioWindow, #picturePanel';//add here your draggable divs
 
   $(function() {$(drags).draggable();});
 
