@@ -14,7 +14,7 @@ function send(data, fn){
   var key = process.env.MAILGUN;
   if (key === undefined){
     throw new Error('The MAILGUN variable has not been defined in the shell. Please edit your bash profile or define MAILGUN at runtime as equal to your Mailgun API key.');
-  }
+  }//sandbox91040.mailgun.org
   var url = 'https://api:' + key + '@api.mailgun.net/v2/stuff.co/messages';
   var post = request.post(url, function(err, response, body){
     fn(err, body);

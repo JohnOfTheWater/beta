@@ -96,7 +96,7 @@ describe('users', function(){
       .field('email', 'max.vance+FINDMYFANS_ACCEPTANCE_TEST_BEFOREEACH@gmail.com')
       .field('password', '678utf')
       .end(function(err, res){
-        expect(res.status).to.equal(302);
+        expect(res.status).to.equal(200);
         done();
       });
     });
@@ -143,63 +143,6 @@ describe('users', function(){
     });
   });
 
-  describe('POST /updateUserInfo', function(){
-    it('should update the user\'s name and email address', function(done){
-      var file = __dirname + '/../fixtures/testpic-copy.jpg';
-      request(app)
-      .post('/auth')
-      .field('name', 'Bob')
-      .field('email', 'max.vance+FINDMYFANS_ACCEPTANCE_TEST_BOB@gmail.com')
-      .field('password', '1234')
-      .attach('photo', file)
-      .end(function(err, res){
-        request(app)
-        .post('/login')
-        .field('email', 'max.vance+FINDMYFANS_ACCEPTANCE_TEST_BOB@gmail.com')
-        .field('password', '1234')
-        .end(function(err, res){
-          var cookie = res.headers['set-cookie'];
-          request(app)
-          .post('/updateUserInfo')
-          .set('cookie', cookie)
-          .field('name', 'Bill')
-          .field('email', 'fake@fake.com')
-          .end(function(err, res){
-            expect(res.status).to.equal(302); //should send us back to the main page
-            expect(res.text).to.equal('Moved Temporarily. Redirecting to /');
-            done();
-          });
-        });
-      });
-    });
-
-    it('should not update this user\'s name and email due to dupeCheck failing', function(done){
-      request(app)
-      .post('/auth')
-      .field('name', 'Bob')
-      .field('email', 'max.vance+FINDMYFANS_ACCEPTANCE_TEST_BOB@gmail.com')
-      .field('password', '1234')
-      .end(function(err, res){
-        request(app)
-        .post('/login')
-        .field('email', 'max.vance+FINDMYFANS_ACCEPTANCE_TEST_BOB@gmail.com')
-        .field('password', '1234')
-        .end(function(err, res){
-          var cookie = res.headers['set-cookie'];
-          request(app)
-          .post('/updateUserInfo')
-          .set('cookie', cookie)
-          .field('name', 'Sam') //remember that Sam is registered in the beforeEach statement
-          .field('email', 'max.vance+FINDMYFANS_ACCEPTANCE_TEST_BEFOREEACH@gmail.com')
-          .end(function(err, res){
-            expect(res.status).to.equal(302); //should fail
-            expect(res.text).to.equal('Moved Temporarily. Redirecting to /profile');
-            done();
-          });
-        });
-      });
-    });
-  });
 
   /*
   describe('POST /updateFavorites', function(){
