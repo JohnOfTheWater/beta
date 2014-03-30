@@ -8,10 +8,10 @@ exports.test = function(req, res){
 
 exports.index = function(req, res){
   req.session.destroy(function(){
-    res.render('home/index', {title: 'ProjectLapis!'});
+    res.render('home/index', {title: 'EverNode'});
   });
 };
 
 exports.login = function(req, res){
-  res.render('user/auth', {title: 'Welcome back to ProjectLapis! Please Login'});
+  res.render('user/auth', {title: 'Welcome back to EverN'});
 };

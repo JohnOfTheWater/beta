@@ -31,6 +31,7 @@
     $('#closeAudio').click(closeSoundPanel);
     $('#closeMappa').click(chiudiMappa);
     $('#showN').click(showNewNote);
+    $('#testo').click(showNewNote);
     $('#sort').click(showSortOptions);
     $('#dateS').click(sortByDate);
     $('#alpha').click(sortByAlpha);
@@ -47,6 +48,7 @@
     $('#addAudio').click(showNewAudio);
     $('#pinIcon').click(mostraMappa);
     $('#trashIcon').click(deleteNote);
+    $('#welcome').mouseenter(showRegLogPanel);
     $('#notesWrap').on('click', '.picture', queryNote);
     $('#searchResult').on('click', '.picture', queryNote);
     $('#fullSearchResult').on('click', '.picture', goToNote);
@@ -113,6 +115,7 @@
     $('#fullSearchPanel').fadeOut(500);
     //$('#searchPanel').fadeOut(500);
     $('#searchResult').fadeOut(500);
+    $('#fullSearchResult').fadeOut(500);
     $('#closeSP').fadeOut(500);
   }
 

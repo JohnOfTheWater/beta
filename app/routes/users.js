@@ -24,7 +24,7 @@ exports.create = function(req, res){
   newUser.addPhoto(req.files.photo.path, function(){
     newUser.register(function(err, body){
       if (!err){
-        res.render('user/auth', {title: 'Welcome to ProjectLapis! Please Login.'});//reminder: we cannot do res.redirect AND pass in a title or other objs like this
+        res.render('user/auth', {title: 'Welcome to EverN'});
       } else {
         res.render('user/auth', {title: 'Registeration Error. Try Again.'});
       }
@@ -87,10 +87,10 @@ exports.login = function(req, res){
           Note.findByUserIdLimit(req.session.userId, function(notes){
             if(notes.length !== 0){
               console.log('IF, notes.length= '+notes.length);
-              res.render('user/notes', {title:'ciao', moment:moment, user:ret, notes:notes});
+              res.render('user/notes', {title:'EverNode', moment:moment, user:ret, notes:notes});
             }else{
               console.log('ELSE, notes.length='+notes.length);
-              res.render('user/notes', {title:'ciao', user:ret});
+              res.render('user/notes', {title:'EverNode', user:ret});
             }
           });
         });

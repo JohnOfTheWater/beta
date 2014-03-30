@@ -16,13 +16,27 @@ body{
 }
 
 #welcome{
+  background-color: rgba(235, 229, 229, 0.7);
+  box-shadow: 2px 0px 10px #1A1717;
+  z-index: 6;
   text-align: center;
-  border: 1px solid white;
-  position: relative;
-  text-shadow: 1px 1px #808080, -1px -1px #808080;
-  top: 200px;
-  left: 35%;
+  position: absolute;
+  text-shadow: 1px 1px 2px white, -1px -1px 2px white;
+  top: 240px;
+  left: 560px;
   width: 500px;
+}
+
+#testo{
+  position: relative;
+  text-shadow: 1px 1px 3px whitesmoke, -1px -1px 3px whitesmoke;
+  left: 700px;
+}
+#testoUser{
+  position: relative;
+  text-shadow: 1px 1px 1px #f5f5f5, -1px -1px 1px #f5f5f5;
+  left: 1500px;
+  top: 100px;
 }
 //----------Marquees-------------//
 
@@ -31,7 +45,7 @@ body{
   text-shadow: 1px 1px white, -1px -1px white;
 color: crimson;
 width: 495px;
-height: 450px;
+height: 550px;
 font-size: -webkit-xxx-large;
 top: 0px;
 font-family: sans-serif;
@@ -42,7 +56,7 @@ font-family: sans-serif;
   text-shadow: 1px 1px black, -1px -1px black;
   color: #20B43D;
   width: 630px;
-  height: 400px;
+  height: 600px;
   font-size: -webkit-xxx-large;
   font-family: cursive;
   top: 200px;
@@ -65,11 +79,11 @@ font-family: sans-serif;
   text-shadow: 1px 1px white, -1px -1px white;
   color: #A0705D;
   width: 500px;
-  height: 500px;
+  height: 600px;
   font-size: xx-large;
   font-family: fantasy;
-  top: 100px;
-  left: 600px;
+  top: 200px;
+  left: 1000px;
 }
 
 #marquee5{
@@ -81,7 +95,7 @@ font-family: sans-serif;
   font-size: -webkit-xxx-large;
   font-family: monospace;
   top: 300px;
-  left: 100px;
+  left: 250px;
 }
 
 #marquee6{
@@ -113,7 +127,7 @@ font-family: 'Concert One', cursive;
   text-shadow: 1px 1px black, -1px -1px black;
   color: #737286;
   width: 500px;
-  height: 500px;
+  height: 600px;
   font-size: xx-large;
   font-family: 'Duru Sans';
   top: 430px;
@@ -125,7 +139,7 @@ font-family: 'Concert One', cursive;
   text-shadow: 1px 1px #000000, -1px -1px #000000;
   color: #D3CC33;
   width: 500px;
-  height: 500px;
+  height: 700px;
   font-size: xx-large;
   font-family: cursive;
   top: 190px;
@@ -147,19 +161,17 @@ font-family: 'Concert One', cursive;
 //----------Login/Registration-----------//
 
 #regFieldset{
-background: url('http://www.visiononlineservices.com/wp-content/uploads/2013/07/back.jpg') no-repeat;
-background-size: cover;
-width: 500px;
-height: 300px;
-box-shadow: 6px 6px 5px #525050;
-//background-color: rgba(235, 229, 229, 0.7);
-border: 1px solid black;
-margin: auto;
-font-family: 'Concert One', cursive;
-text-shadow: 1px 1px 1px #ffffff, -1px -1px 1px #ffffff;
-position: absolute;
-top: 270px;
-left: 960px;
+  background-color: rgba(235, 229, 229, 0.7);
+  border: 1px solid white;
+  box-shadow: 2px 2px 10px #1A1717;
+  width: 500px;
+  height: 260px;
+  margin: auto;
+  font-family: 'Concert One', cursive;
+  text-shadow: 1px 1px 1px #ffffff, -1px -1px 1px #ffffff;
+  position: absolute;
+  top: 304px;
+  left: 560px;
 }
 
 #closeReg {
@@ -175,22 +187,33 @@ left: 960px;
 }
 
 #login {
-  box-shadow: 5px 5px 5px #1A1717;
-  background: url('http://www.visiononlineservices.com/wp-content/uploads/2013/07/back.jpg') no-repeat;
-  background-size: cover;
-  border: 1px solid black;
-  width: 400px;
-  //position: relative;
-  //top: 10px; left: 10px;
+  background-color: rgba(235, 229, 229, 0.7);
+  border: 1px solid white;
+  box-shadow: 2px 2px 10px #1A1717;
+  width: 500px;
+  height: 260px;
+  margin: auto;
+  font-family: 'Concert One', cursive;
+  text-shadow: 1px 1px 1px #ffffff, -1px -1px 1px #ffffff;
+  position: absolute;
+  top: 304px;
+  left: 560px;
+}
+
+#evernode{
+position: absolute;
+top: 220px;
+left: 370px;
+font-size: 26px;
 }
 
 #signIn {
   color: #007095;
   position: absolute;
-  top: 65px;
+  top: 53px;
   left: 360px;
   text-decoration: underline;
-  font-size: larger;
+  font-size: 22px;
 }
 //----------lat/lng----------//
 
@@ -201,31 +224,33 @@ left: 960px;
 //----------notesPage---------------//
 
 .profilePic{
+  border: 2px solid white;
   position: relative;
   background-size: cover;
   width: 150px;
   height: 150px;
-  top: -70px;
-  left: 1500px;
+  top: -110px;
+  left: 1480px;
 }
 
 #newNote {
+  background-color: rgba(235, 229, 229, 0.9);
+  border: 1px solid white;
+  box-shadow: 2px 2px 10px #1A1717;
+  width: 500px;
+  height: 600px;
+  font-family: 'Concert One', cursive;
+  text-shadow: 1px 1px 1px #ffffff, -1px -1px 1px #ffffff;
   position: absolute;
   top: 100px;
   left: 15px;
-  box-shadow: 5px 5px 5px #1A1717;
-  background: url('http://www.visiononlineservices.com/wp-content/uploads/2013/07/back.jpg') no-repeat;
-  background-size: cover;
-  border: 1px solid black;
-  width: 600px;
-  font-family: 'Concert One', cursive;
   text-shadow: 1px 1px 1px #ffffff, -1px -1px 1px #ffffff;
   z-index: 2;
 }
 
 #closeNewNote {
   position: absolute;
-  top: 10px; left: 529px;
+  top: 10px; left: 430px;
   margin: 0px 0px 0px 0px;
   font-size: 16px;
   color: white;
@@ -639,7 +664,7 @@ left: 600px;
   min-height: 200px;
   float: left;
   font-family: 'Concert One', cursive;
-  top: -167px;
+  top: -210px;
   left: 550px;
 }
 
@@ -986,7 +1011,7 @@ width: 70px; height: 70px;
   background-color: rgba(235, 229, 229, 0.5);
   border: 1px solid white;
   position: absolute;
-  top: -55px; left: -550px;
+  top: -65px; left: -550px;
   width: 500px;
   margin-bottom: 5px;
 }

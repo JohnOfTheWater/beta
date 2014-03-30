@@ -1,11 +1,11 @@
 extends ../shared/template
 
 block content
-  h1= title
+  h1 #{title}&#11041;de
   if !user
     form(method='post', action='/login')
       fieldset#login
-        legend Login
+        #evernode EverN&#11041;de
         .row
           .small-12.columns
             label Email
@@ -18,5 +18,5 @@ block content
           .small-4.columns
             button.small.radius Login
   else
-    h1 booty
+    h1 please register and login
 

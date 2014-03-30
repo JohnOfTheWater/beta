@@ -1,8 +1,8 @@
 extends ../shared/template
 
 block content
-  h1 This was the edit profile page, now is notes page.
-  h1= title
+  h1#testo EverN&#11041;de
+  h1#testoUser= user.name
   .profilePic(style='background-image:url("'+user.photo+'")')
 
   form(action='/notes', method='post')
