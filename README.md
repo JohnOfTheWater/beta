@@ -11,28 +11,29 @@ In this app there are also integrated google maps geo location features, and npr
 The client side take advantage of the foundation 5 framework, even if most of the css is custom made.
 
 Implemented Features:
+
 Register and Login:
 
-register to create a unique user account and login to your account to start creating notes.
+--register to create a unique user account and login to your account to start creating notes.
 
 Create Notes:
 
-you can easily create new notes, adding basic information; upon creation every note is geo located using google maps api.
+--you can easily create new notes, adding basic information; upon creation every note is geo located using google maps api.
 
 Add multimedia content to your notes:
 
-you can attach to your notes audio files like mp3 or podcasts,  picture from your pc or you can even take a picture of documents directly from your webcamera.
+--you can attach to your notes audio files like mp3 or podcasts,  picture from your pc or you can even take a picture of documents directly from your webcamera.
 
 Draggable windows:
 
-for easily organize your workspace windows are draggable in any position of the screen you want.
+--for easily organize your workspace windows are draggable in any position of the screen you want.
 
 Search Engine:
 
-find your notes sorting all of them by date of creation or alphabetical order, or do a more specific research by name, date of creation or tags.
+--find your notes sorting all of them by date of creation or alphabetical order, or do a more specific research by name, date of creation or tags.
 
 NPR api integration:
 
-real time news form npr related to whatever topic you are writing in your personal note.
+--real time news form npr related to whatever topic you are writing in your personal note.
 
 
