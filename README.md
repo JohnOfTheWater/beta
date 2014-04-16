@@ -36,4 +36,23 @@ NPR api integration:
 
 --real time news form npr related to whatever topic you are writing in your personal note.
 
-
+Thechnologies used:
+-Node.js
+-Express
+-MongoDB
+-Jade
+-Less
+-Grunt
+-Lo_Dash
+-Google API
+-Passport
+-OAuth
+-Redis
+-Moment
+-Bcrypt
+-Mocha
+-Chai
+-SuperTest
+-Blanket
+-TravisCI
+-Gemnasium
